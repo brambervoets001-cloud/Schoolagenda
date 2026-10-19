@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Schoolagenda</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="style.css" />
+  <meta name="theme-color" content="#4f46e5" />
+  <link rel="apple-touch-icon" href="icon-192.png" />
+</head>
+<body>
+  <div id="app">
+    <header>
+      <h1>📅 Schoolagenda</h1>
+      <button id="btn-add" class="btn-primary">+ Toevoegen</button>
+    </header>
+
+    <nav class="tabs">
+      <button class="tab active" data-tab="week">Week</button>
+      <button class="tab" data-tab="lijst">Lijst</button>
+      <button class="tab" data-tab="smartschool">Smartschool</button>
+    </nav>
+
+    <main id="content"></main>
+  </div>
+
+  <!-- Modal -->
+  <div id="modal" class="hidden">
+    <div class="modal-box">
+      <h2 id="modal-title">Nieuw item</h2>
+      <form id="item-form">
+        <label>Type
+          <select name="type">
+            <option value="toets">📝 Toets</option>
+            <option value="taak">📚 Taak</option>
+            <option value="studie">🧠 Studeermomenten</option>
+            <option value="persoonlijk">🙋 Persoonlijk</option>
+            <option value="smartschool">🔗 Smartschool</option>
+          </select>
+        </label>
+        <label>Titel
+          <input name="titel" type="text" required placeholder="Bv. Wiskunde toets H3" />
+        </label>
+        <label>Datum
+          <input name="datum" type="date" required />
+        </label>
+        <label>Tijd (optioneel)
+          <input name="tijd" type="time" />
+        </label>
+        <label>Vak / Omschrijving
+          <input name="vak" type="text" placeholder="Bv. Wiskunde" />
+        </label>
+        <label>Notitie
+          <textarea name="notitie" rows="3" placeholder="Extra info..."></textarea>
+        </label>
+        <div class="modal-actions">
+          <button type="button" id="btn-cancel" class="btn-secondary">Annuleren</button>
+          <button type="submit" class="btn-primary">Opslaan</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Smartschool koppel modal -->
+  <div id="ss-modal" class="hidden">
+    <div class="modal-box">
+      <h2>🔗 Smartschool koppelen</h2>
+      <p class="info-text">Exporteer je Smartschool agenda als <strong>.ics</strong> bestand en importeer het hier.</p>
+      <ol class="steps">
+        <li>Ga naar Smartschool → Agenda</li>
+        <li>Klik op het instellingen-icoon</li>
+        <li>Kies "Exporteren" → download het .ics bestand</li>
+        <li>Upload het hier:</li>
+      </ol>
+      <input type="file" id="ics-upload" accept=".ics" />
+      <div id="ss-status"></div>
+      <div class="modal-actions">
+        <button id="btn-ss-cancel" class="btn-secondary">Sluiten</button>
+        <button id="btn-ss-clear" class="btn-danger">Smartschool items wissen</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
